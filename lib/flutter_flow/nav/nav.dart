@@ -34,17 +34,27 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) => HomePageWidget(),
+      errorBuilder: (context, state) => PrincipalWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => HomePageWidget(),
+          builder: (context, _) => PrincipalWidget(),
         ),
         FFRoute(
-          name: HomePageWidget.routeName,
-          path: HomePageWidget.routePath,
-          builder: (context, params) => HomePageWidget(),
+          name: PrincipalWidget.routeName,
+          path: PrincipalWidget.routePath,
+          builder: (context, params) => PrincipalWidget(),
+        ),
+        FFRoute(
+          name: AlumnosOpcionesWidget.routeName,
+          path: AlumnosOpcionesWidget.routePath,
+          builder: (context, params) => AlumnosOpcionesWidget(),
+        ),
+        FFRoute(
+          name: AsignaturasOpcionesWidget.routeName,
+          path: AsignaturasOpcionesWidget.routePath,
+          builder: (context, params) => AsignaturasOpcionesWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

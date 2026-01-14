@@ -1,2 +1,6 @@
 // Export pages
-export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
+export '/pages/principal/principal_widget.dart' show PrincipalWidget;
+export '/pages/alumnos_opciones/alumnos_opciones_widget.dart'
+    show AlumnosOpcionesWidget;
+export '/pages/asignaturas_opciones/asignaturas_opciones_widget.dart'
+    show AsignaturasOpcionesWidget;
