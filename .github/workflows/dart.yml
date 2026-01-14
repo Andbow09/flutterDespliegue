@@ -19,7 +19,7 @@ jobs:
         run: flutter build web --release --base-href "/"
       - name: Deploy to Pages repository
         run: |
-          git clone https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/andbow09.github.io pages-repo
+          git clone https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/Andbow09/Andbow09.github.io pages-repo
           rm -r pages-repo/*
           cp -r build/web/* pages-repo/
           cd pages-repo
