@@ -66,10 +66,12 @@ class _ListaAsignaturasFromAlumnosWidgetState
                     children: [
                       FutureBuilder<List<VistaAsignaturasAlumnoRow>>(
                         future: VistaAsignaturasAlumnoTable().queryRows(
-                          queryFn: (q) => q.eqOrNull(
-                            'id_alumno',
-                            widget.alumno?.id,
-                          ),
+                          queryFn: (q) => q
+                              .eqOrNull(
+                                'id_alumno',
+                                widget.alumno?.id,
+                              )
+                              .order('id_asignatura', ascending: true),
                         ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.

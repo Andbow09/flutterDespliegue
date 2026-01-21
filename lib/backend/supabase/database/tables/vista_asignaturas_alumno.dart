@@ -22,6 +22,9 @@ class VistaAsignaturasAlumnoRow extends SupabaseDataRow {
   int? get idAlumno => getField<int>('id_alumno');
   set idAlumno(int? value) => setField<int>('id_alumno', value);
 
+  int? get idAsignatura => getField<int>('id_asignatura');
+  set idAsignatura(int? value) => setField<int>('id_asignatura', value);
+
   String? get nombreAsignatura => getField<String>('nombre_asignatura');
   set nombreAsignatura(String? value) =>
       setField<String>('nombre_asignatura', value);

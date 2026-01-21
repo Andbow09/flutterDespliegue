@@ -61,7 +61,7 @@ class _ListaAlumnosWidgetState extends State<ListaAlumnosWidget> {
                     children: [
                       FutureBuilder<List<AlumnoRow>>(
                         future: AlumnoTable().queryRows(
-                          queryFn: (q) => q,
+                          queryFn: (q) => q.order('id', ascending: true),
                         ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.

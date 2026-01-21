@@ -288,7 +288,7 @@ class _AsignaturaEditarWidgetState extends State<AsignaturaEditarWidget> {
                                 );
 
                                 context.pushNamed(
-                                  ListaAlumnosWidget.routeName,
+                                  ListaAsignaturasWidget.routeName,
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,

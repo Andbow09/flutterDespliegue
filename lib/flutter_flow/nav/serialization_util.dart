@@ -207,6 +207,8 @@ dynamic deserializeParam<T>(
         switch (T) {
           case VistaAlumnosAsignaturaRow:
             return VistaAlumnosAsignaturaRow(data);
+          case VistaCandidatosAMatricularRow:
+            return VistaCandidatosAMatricularRow(data);
           case VistaAsignaturasAlumnoRow:
             return VistaAsignaturasAlumnoRow(data);
           case AlumnoRow:

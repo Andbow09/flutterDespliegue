@@ -68,10 +68,12 @@ class _ListaAlumnosDesmatricularWidgetState
                     children: [
                       FutureBuilder<List<VistaAlumnosAsignaturaRow>>(
                         future: VistaAlumnosAsignaturaTable().queryRows(
-                          queryFn: (q) => q.neqOrNull(
-                            'id_asignatura',
-                            widget.asignatura?.id,
-                          ),
+                          queryFn: (q) => q
+                              .eqOrNull(
+                                'id_asignatura',
+                                widget.asignatura?.id,
+                              )
+                              .order('id_alumno', ascending: true),
                         ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
@@ -237,6 +239,27 @@ class _ListaAlumnosDesmatricularWidgetState
                                                   .idAlumno!,
                                               widget.asignatura!.id,
                                             );
+
+                                            context.pushNamed(
+                                              ListaAlumnosDesmatricularWidget
+                                                  .routeName,
+                                              queryParameters: {
+                                                'asignatura': serializeParam(
+                                                  widget.asignatura,
+                                                  ParamType.SupabaseRow,
+                                                ),
+                                              }.withoutNulls,
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.fade,
+                                                  duration: Duration(
+                                                      milliseconds: 500),
+                                                ),
+                                              },
+                                            );
                                           },
                                           child: FaIcon(
                                             FontAwesomeIcons.minus,
@@ -331,7 +354,7 @@ class _ListaAlumnosDesmatricularWidgetState
                     highlightColor: Colors.transparent,
                     onTap: () async {
                       context.pushNamed(
-                        PrincipalWidget.routeName,
+                        ListaAsignaturasWidget.routeName,
                         extra: <String, dynamic>{
                           kTransitionInfoKey: TransitionInfo(
                             hasTransition: true,

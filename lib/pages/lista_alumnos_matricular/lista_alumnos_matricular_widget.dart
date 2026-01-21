@@ -65,12 +65,14 @@ class _ListaAlumnosMatricularWidgetState
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      FutureBuilder<List<VistaAlumnosAsignaturaRow>>(
-                        future: VistaAlumnosAsignaturaTable().queryRows(
-                          queryFn: (q) => q.eqOrNull(
-                            'id_asignatura',
-                            widget.asignatura?.id,
-                          ),
+                      FutureBuilder<List<VistaCandidatosAMatricularRow>>(
+                        future: VistaCandidatosAMatricularTable().queryRows(
+                          queryFn: (q) => q
+                              .eqOrNull(
+                                'id_asignatura_filtro',
+                                widget.asignatura?.id,
+                              )
+                              .order('id_alumno', ascending: true),
                         ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
@@ -87,8 +89,8 @@ class _ListaAlumnosMatricularWidgetState
                               ),
                             );
                           }
-                          List<VistaAlumnosAsignaturaRow>
-                              listViewVistaAlumnosAsignaturaRowList =
+                          List<VistaCandidatosAMatricularRow>
+                              listViewVistaCandidatosAMatricularRowList =
                               snapshot.data!;
 
                           return ListView.separated(
@@ -96,12 +98,12 @@ class _ListaAlumnosMatricularWidgetState
                             primary: false,
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
-                            itemCount:
-                                listViewVistaAlumnosAsignaturaRowList.length,
+                            itemCount: listViewVistaCandidatosAMatricularRowList
+                                .length,
                             separatorBuilder: (_, __) => SizedBox(height: 15.0),
                             itemBuilder: (context, listViewIndex) {
-                              final listViewVistaAlumnosAsignaturaRow =
-                                  listViewVistaAlumnosAsignaturaRowList[
+                              final listViewVistaCandidatosAMatricularRow =
+                                  listViewVistaCandidatosAMatricularRowList[
                                       listViewIndex];
                               return Container(
                                 width: 100.0,
@@ -134,7 +136,7 @@ class _ListaAlumnosMatricularWidgetState
                                           children: [
                                             Text(
                                               valueOrDefault<String>(
-                                                listViewVistaAlumnosAsignaturaRow
+                                                listViewVistaCandidatosAMatricularRow
                                                     .nombreAlumno,
                                                 'Nombre',
                                               ),
@@ -182,7 +184,7 @@ class _ListaAlumnosMatricularWidgetState
                                           children: [
                                             Text(
                                               valueOrDefault<String>(
-                                                listViewVistaAlumnosAsignaturaRow
+                                                listViewVistaCandidatosAMatricularRow
                                                     .apellidoAlumno,
                                                 'Apellido',
                                               ),
@@ -232,9 +234,30 @@ class _ListaAlumnosMatricularWidgetState
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             await actions.matricularAlumno(
-                                              listViewVistaAlumnosAsignaturaRow
+                                              listViewVistaCandidatosAMatricularRow
                                                   .idAlumno!,
                                               widget.asignatura!.id,
+                                            );
+
+                                            context.pushNamed(
+                                              ListaAlumnosMatricularWidget
+                                                  .routeName,
+                                              queryParameters: {
+                                                'asignatura': serializeParam(
+                                                  widget.asignatura,
+                                                  ParamType.SupabaseRow,
+                                                ),
+                                              }.withoutNulls,
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.fade,
+                                                  duration: Duration(
+                                                      milliseconds: 500),
+                                                ),
+                                              },
                                             );
                                           },
                                           child: Icon(
@@ -330,7 +353,7 @@ class _ListaAlumnosMatricularWidgetState
                     highlightColor: Colors.transparent,
                     onTap: () async {
                       context.pushNamed(
-                        PrincipalWidget.routeName,
+                        ListaAsignaturasWidget.routeName,
                         extra: <String, dynamic>{
                           kTransitionInfoKey: TransitionInfo(
                             hasTransition: true,

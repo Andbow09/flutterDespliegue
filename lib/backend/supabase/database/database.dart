@@ -6,6 +6,7 @@ export 'row.dart';
 export 'table.dart';
 
 export 'tables/vista_alumnos_asignatura.dart';
+export 'tables/vista_candidatos_a_matricular.dart';
 export 'tables/vista_asignaturas_alumno.dart';
 export 'tables/alumno.dart';
 export 'tables/alumno_asignatura.dart';

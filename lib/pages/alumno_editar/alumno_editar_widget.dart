@@ -421,9 +421,10 @@ class _AlumnoEditarWidgetState extends State<AlumnoEditarWidget> {
                                 0.0, 30.0, 0.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
-                                await actions.updateAsignatura(
+                                await actions.updateAlumno(
                                   widget.alumno!.id,
                                   _model.textController1.text,
+                                  _model.textController2.text,
                                 );
 
                                 context.pushNamed(

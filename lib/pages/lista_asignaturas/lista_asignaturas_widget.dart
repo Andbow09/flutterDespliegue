@@ -65,7 +65,7 @@ class _ListaAsignaturasWidgetState extends State<ListaAsignaturasWidget> {
                         children: [
                           FutureBuilder<List<AsignaturaRow>>(
                             future: AsignaturaTable().queryRows(
-                              queryFn: (q) => q,
+                              queryFn: (q) => q.order('id', ascending: true),
                             ),
                             builder: (context, snapshot) {
                               // Customize what your widget looks like when it's loading.
@@ -179,6 +179,22 @@ class _ListaAsignaturasWidgetState extends State<ListaAsignaturasWidget> {
                                               onTap: () async {
                                                 await actions.deleteAsignatura(
                                                   listViewAsignaturaRow.id,
+                                                );
+
+                                                context.pushNamed(
+                                                  ListaAsignaturasWidget
+                                                      .routeName,
+                                                  extra: <String, dynamic>{
+                                                    kTransitionInfoKey:
+                                                        TransitionInfo(
+                                                      hasTransition: true,
+                                                      transitionType:
+                                                          PageTransitionType
+                                                              .fade,
+                                                      duration: Duration(
+                                                          milliseconds: 500),
+                                                    ),
+                                                  },
                                                 );
                                               },
                                               child: FaIcon(
@@ -373,7 +389,7 @@ class _ListaAsignaturasWidgetState extends State<ListaAsignaturasWidget> {
                     highlightColor: Colors.transparent,
                     onTap: () async {
                       context.pushNamed(
-                        ListaAsignaturasWidget.routeName,
+                        PrincipalWidget.routeName,
                         extra: <String, dynamic>{
                           kTransitionInfoKey: TransitionInfo(
                             hasTransition: true,
