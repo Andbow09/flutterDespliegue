@@ -87,6 +87,7 @@ class _ListaAsignaturasWidgetState extends State<ListaAsignaturasWidget> {
 
                               return ListView.separated(
                                 padding: EdgeInsets.zero,
+                                primary: false,
                                 shrinkWrap: true,
                                 scrollDirection: Axis.vertical,
                                 itemCount: listViewAsignaturaRowList.length,

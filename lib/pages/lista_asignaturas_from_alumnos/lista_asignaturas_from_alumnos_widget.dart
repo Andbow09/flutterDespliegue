@@ -60,88 +60,85 @@ class _ListaAsignaturasFromAlumnosWidgetState
                 padding:
                     EdgeInsetsDirectional.fromSTEB(20.0, 135.0, 20.0, 20.0),
                 child: SingleChildScrollView(
+                  primary: false,
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          FutureBuilder<List<VistaAsignaturasAlumnoRow>>(
-                            future: VistaAsignaturasAlumnoTable().queryRows(
-                              queryFn: (q) => q.eqOrNull(
-                                'id_alumno',
-                                widget.alumno?.id,
-                              ),
-                            ),
-                            builder: (context, snapshot) {
-                              // Customize what your widget looks like when it's loading.
-                              if (!snapshot.hasData) {
-                                return Center(
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).primary,
-                                      ),
-                                    ),
+                      FutureBuilder<List<VistaAsignaturasAlumnoRow>>(
+                        future: VistaAsignaturasAlumnoTable().queryRows(
+                          queryFn: (q) => q.eqOrNull(
+                            'id_alumno',
+                            widget.alumno?.id,
+                          ),
+                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
                                   ),
-                                );
-                              }
-                              List<VistaAsignaturasAlumnoRow>
-                                  listViewVistaAsignaturasAlumnoRowList =
-                                  snapshot.data!;
+                                ),
+                              ),
+                            );
+                          }
+                          List<VistaAsignaturasAlumnoRow>
+                              listViewVistaAsignaturasAlumnoRowList =
+                              snapshot.data!;
 
-                              return ListView.separated(
-                                padding: EdgeInsets.zero,
-                                shrinkWrap: true,
-                                scrollDirection: Axis.vertical,
-                                itemCount: listViewVistaAsignaturasAlumnoRowList
-                                    .length,
-                                separatorBuilder: (_, __) =>
-                                    SizedBox(height: 15.0),
-                                itemBuilder: (context, listViewIndex) {
-                                  final listViewVistaAsignaturasAlumnoRow =
-                                      listViewVistaAsignaturasAlumnoRowList[
-                                          listViewIndex];
-                                  return Container(
-                                    width: 100.0,
-                                    height: 50.0,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          blurRadius: 4.0,
-                                          color: Color(0x33000000),
-                                          offset: Offset(
-                                            0.0,
-                                            2.0,
-                                          ),
-                                        )
-                                      ],
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    child: Stack(
-                                      children: [
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 0.0, 0.0, 0.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    listViewVistaAsignaturasAlumnoRow
-                                                        .nombreAsignatura,
-                                                    'Asignatura',
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
+                          return ListView.separated(
+                            padding: EdgeInsets.zero,
+                            primary: false,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            itemCount:
+                                listViewVistaAsignaturasAlumnoRowList.length,
+                            separatorBuilder: (_, __) => SizedBox(height: 15.0),
+                            itemBuilder: (context, listViewIndex) {
+                              final listViewVistaAsignaturasAlumnoRow =
+                                  listViewVistaAsignaturasAlumnoRowList[
+                                      listViewIndex];
+                              return Container(
+                                width: 100.0,
+                                height: 50.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 4.0,
+                                      color: Color(0x33000000),
+                                      offset: Offset(
+                                        0.0,
+                                        2.0,
+                                      ),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment:
+                                          AlignmentDirectional(-1.0, 0.0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 0.0, 0.0, 0.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Text(
+                                              valueOrDefault<String>(
+                                                listViewVistaAsignaturasAlumnoRow
+                                                    .nombreAsignatura,
+                                                'Asignatura',
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
                                                         font: GoogleFonts.inter(
@@ -168,21 +165,18 @@ class _ListaAsignaturasFromAlumnosWidgetState
                                                                 .bodyMedium
                                                                 .fontStyle,
                                                       ),
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                ),
-                                              ],
+                                              overflow: TextOverflow.ellipsis,
                                             ),
-                                          ),
+                                          ],
                                         ),
-                                      ],
+                                      ),
                                     ),
-                                  );
-                                },
+                                  ],
+                                ),
                               );
                             },
-                          ),
-                        ],
+                          );
+                        },
                       ),
                     ],
                   ),
