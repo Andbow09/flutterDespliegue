@@ -1,8 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'alumnos_opciones_widget.dart' show AlumnosOpcionesWidget;
+import '/index.dart';
+import 'lista_asignaturas_widget.dart' show ListaAsignaturasWidget;
 import 'package:flutter/material.dart';
 
-class AlumnosOpcionesModel extends FlutterFlowModel<AlumnosOpcionesWidget> {
+class ListaAsignaturasModel extends FlutterFlowModel<ListaAsignaturasWidget> {
   @override
   void initState(BuildContext context) {}
 

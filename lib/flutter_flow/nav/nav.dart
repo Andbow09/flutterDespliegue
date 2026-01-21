@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '/backend/supabase/supabase.dart';
 
 import '/flutter_flow/flutter_flow_util.dart';
 
@@ -47,14 +48,84 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => PrincipalWidget(),
         ),
         FFRoute(
-          name: AlumnosOpcionesWidget.routeName,
-          path: AlumnosOpcionesWidget.routePath,
-          builder: (context, params) => AlumnosOpcionesWidget(),
+          name: ListaAlumnosWidget.routeName,
+          path: ListaAlumnosWidget.routePath,
+          builder: (context, params) => ListaAlumnosWidget(),
         ),
         FFRoute(
-          name: AsignaturasOpcionesWidget.routeName,
-          path: AsignaturasOpcionesWidget.routePath,
-          builder: (context, params) => AsignaturasOpcionesWidget(),
+          name: ListaAsignaturasWidget.routeName,
+          path: ListaAsignaturasWidget.routePath,
+          builder: (context, params) => ListaAsignaturasWidget(),
+        ),
+        FFRoute(
+          name: AlumnoCrearWidget.routeName,
+          path: AlumnoCrearWidget.routePath,
+          builder: (context, params) => AlumnoCrearWidget(),
+        ),
+        FFRoute(
+          name: AlumnoEditarWidget.routeName,
+          path: AlumnoEditarWidget.routePath,
+          builder: (context, params) => AlumnoEditarWidget(
+            alumno: params.getParam<AlumnoRow>(
+              'alumno',
+              ParamType.SupabaseRow,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: AsignaturaCrearWidget.routeName,
+          path: AsignaturaCrearWidget.routePath,
+          builder: (context, params) => AsignaturaCrearWidget(),
+        ),
+        FFRoute(
+          name: AsignaturaEditarWidget.routeName,
+          path: AsignaturaEditarWidget.routePath,
+          builder: (context, params) => AsignaturaEditarWidget(
+            asignatura: params.getParam<AsignaturaRow>(
+              'asignatura',
+              ParamType.SupabaseRow,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: ListaAsignaturasFromAlumnosWidget.routeName,
+          path: ListaAsignaturasFromAlumnosWidget.routePath,
+          builder: (context, params) => ListaAsignaturasFromAlumnosWidget(
+            alumno: params.getParam<AlumnoRow>(
+              'alumno',
+              ParamType.SupabaseRow,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: ListaAlumnosFromAsignaturasWidget.routeName,
+          path: ListaAlumnosFromAsignaturasWidget.routePath,
+          builder: (context, params) => ListaAlumnosFromAsignaturasWidget(
+            asignatura: params.getParam<AsignaturaRow>(
+              'asignatura',
+              ParamType.SupabaseRow,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: ListaAlumnosMatricularWidget.routeName,
+          path: ListaAlumnosMatricularWidget.routePath,
+          builder: (context, params) => ListaAlumnosMatricularWidget(
+            asignatura: params.getParam<AsignaturaRow>(
+              'asignatura',
+              ParamType.SupabaseRow,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: ListaAlumnosDesmatricularWidget.routeName,
+          path: ListaAlumnosDesmatricularWidget.routePath,
+          builder: (context, params) => ListaAlumnosDesmatricularWidget(
+            asignatura: params.getParam<AsignaturaRow>(
+              'asignatura',
+              ParamType.SupabaseRow,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
